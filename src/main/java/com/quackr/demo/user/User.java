@@ -1,4 +1,4 @@
-package com.quackr.demo.model;
+package com.quackr.demo.user;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -76,4 +76,5 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

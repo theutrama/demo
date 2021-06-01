@@ -1,7 +1,10 @@
 package com.quackr.demo.user;
 
+import com.quackr.demo.post.Post;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -12,6 +15,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userId", unique = true)
     private Long userId;
+
+    @Column
+    @OneToMany
+    private List<Post> posts;
 
     @Column(name = "first_name", nullable = false)
     private String first_name;
@@ -35,6 +42,14 @@ public class User implements Serializable {
 
     public User() {
 
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public Long getUserId() {

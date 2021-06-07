@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class PostConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(PostRepository repository){
+    CommandLineRunner commandLineRunnerPost(PostRepository repository){
         return args -> {
             String newPost = "Dies ist ein TestPost";
             new Post(new User("postUser", "postUser", "postUser", "postUser"), newPost);

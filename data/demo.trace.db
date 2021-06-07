@@ -6497,3 +6497,7 @@ java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supporte
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-06-05 15:07:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "USER_POSTS" nicht gefunden
+Table "USER_POSTS" not found; SQL statement:
+select posts0_.User_userId as user_use1_2_0_, posts0_.posts_postId as posts_po2_2_0_, post1_.postId as postid1_0_1_, post1_.content as content2_0_1_, post1_.creationDate as creation3_0_1_, post1_.user_userId as user_use4_0_1_, user2_.userId as userid1_1_2_, user2_.email as email2_1_2_, user2_.first_name as first_na3_1_2_, user2_.last_name as last_nam4_1_2_, user2_.username as username5_1_2_ from User_posts posts0_ inner join Post post1_ on posts0_.posts_postId=post1_.postId left outer join User user2_ on post1_.user_userId=user2_.userId where posts0_.User_userId=? [42102-200]

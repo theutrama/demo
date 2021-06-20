@@ -1,29 +1,145 @@
+<!--
+<button style="margin: 10px" type="button" class="btn btn-primary btn-lg" onclick="document.location.href='/create-post'">Create Post</button>
 
-<button type="button" class="btn btn-primary btn-lg" onclick="document.location.href='/create-post'">Create Post</button>
 
-<div class="list-group">
-  <a href="post-details" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small>3 days ago</small>
-    </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small>And some small print.</small>
-  </a>
-  <a href="post-details" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small class="text-muted">And some muted small print.</small>
-  </a>
-  <a href="post-details" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small class="text-muted">And some muted small print.</small>
-  </a>
+<select name="cars" id="cars"  class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+  <option value="" selected disabled hidden>Filter by name</option>
+  <option *ngFor="let user of users" >{{user.first_name}}</option>
+</select>
+-->
+
+
+
+<div>
+
+
+
+  <div style="padding: 10px">
+    <mat-form-field>
+      <label style="padding-right: 10px; font-weight: bold">Filter:</label>
+      <input type="text" (keyup)="applyFilter($any($event.target).value)" matInput >
+    </mat-form-field>
+  </div>
+
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+    <ng-container matColumnDef="postId">
+      <th mat-header-cell *matHeaderCellDef> PostId </th>
+      <td mat-cell *matCellDef="let post"> {{post.postId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> creationDate </th>
+      <td mat-cell *matCellDef="let post"> {{post.creationDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Content </th>
+      <td mat-cell *matCellDef="let post"> {{post.content}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let post"> {{post.user["username"]}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </mat-table>
 </div>
+
+  <!--
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="postId">
+      <th *matHeaderCellDef mat-sort-header>PostId</th>
+      <td *matCellDef="let post">{{post.postId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Creation Date</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let post">{{post.creationDate}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="content">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Content</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let post">{{post.content}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let post">{{post.user["username"]}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+
+
+
+
+<ng-container matColumnDef="postId">
+      <mat-header-cell *matHeaderCellDef>PostId </mat-header-cell>
+      <mat-cell *matCellDev="let post">{{post.postId}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="creationDate">
+      <mat-header-cell *matHeaderCellDef>CreationDate </mat-header-cell>
+      <mat-cell *matCellDev="let post">{{post.creationDate}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <mat-header-cell *matHeaderCellDef>Content </mat-header-cell>
+      <mat-cell *matCellDev="let post">{{post.content}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef>Username </mat-header-cell>
+      <mat-cell *matCellDev="let post">{{post.user["username"]}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+
+<ng-container matColumnDef="postId">
+      <th mat-header-cell *matHeaderCellDef> PostId </th>
+      <td mat-cell *matCellDef="let post"> {{post.postId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+      <td mat-cell *matCellDef="let post"> {{post.creationDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Content </th>
+      <td mat-cell *matCellDef="let post"> {{post.content}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let post"> {{post.name["username"]}} </td>
+    </ng-container>
+
+
+<ng-container matColumnDef="postId">
+      <th mat-header-cell *matHeaderCellDef> PostId </th>
+      <td mat-cell *matCellDef="let post"> {{post.postId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+      <td mat-cell *matCellDef="let post"> {{post.creationDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Content </th>
+      <td mat-cell *matCellDef="let post"> {{post.content}} </td>
+    </ng-container>
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let post"> {{post.user["username"]}} </td>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+-->

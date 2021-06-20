@@ -1,6 +1,7 @@
 package com.quackr.demo.post;
 
 import com.quackr.demo.user.User;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,13 +24,15 @@ public class Post implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid")
     private User user;
 
-    public Post(User user, String content) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        this.creationDate = LocalDateTime.now();
-        this.user = user;
+
+    public Post(String content) {
+        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern(("yyyy/MM/dd HH:mm:ss"));
+        LocalDateTime now = LocalDateTime.now();
+        this.creationDate = now;
         this.content = content;
     }
 
@@ -63,5 +66,13 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

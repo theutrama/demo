@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-post-details',
@@ -10,6 +11,7 @@ export class PostDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

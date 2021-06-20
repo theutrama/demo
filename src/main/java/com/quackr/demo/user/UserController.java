@@ -16,6 +16,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();

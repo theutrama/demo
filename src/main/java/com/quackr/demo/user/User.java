@@ -1,9 +1,11 @@
 package com.quackr.demo.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quackr.demo.post.Post;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,8 +18,8 @@ public class User implements Serializable {
     @Column(name = "userId", unique = true)
     private Long userId;
 
-    @Column
-    @OneToMany
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Post> posts;
 
     @Column(name = "first_name", nullable = false)
